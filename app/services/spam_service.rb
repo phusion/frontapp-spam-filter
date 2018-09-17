@@ -1,20 +1,25 @@
 class SpamService
 
-  def initialize
-    @datumbox = Datumbox.new(Rails.application.credentials.datumbox_token)
-  end
-
   def is_spam?(message)
-    json = JSON.parse(@datumbox.spam_detection(text: message))
-    json['output'] && json['output']['result'] && json['output']['result'] == 'spam'
+    Akismet.spam?(ip, user_agent, text: message)
   end
 
   def mark_spam(message)
-    # not implemented because not supported by DatumBox
+    Akismet.spam(ip, user_agent, text: message)
   end
 
   def mark_ham(message)
-    # not implemented because not supported by DatumBox
+    Akismet.ham(ip, user_agent, text: message)
+  end
+
+private
+
+  def ip
+    '127.0.0.1'
+  end
+
+  def user_agent
+    'FrontAppSpamFilter/1.0.0 | Akismet/2.0.0'
   end
 
 end

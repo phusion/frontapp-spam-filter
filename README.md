@@ -2,14 +2,15 @@
 
 Implements a spam filter for [Front](https://frontapp.com) through webhooks and a third party service. This setup requires a special inbox and tag in Front to (manually) classify spam messages. Messages can be marked as spam by moving them into the designated Spam inbox. Moving messages from the spam inbox to a different folder will unmark them as spam. Any message marked as spam, either by the the third party service, or by moving them into the spam inbox, will be tagged with the Spam-tag.
 
-Right now Datumbox is used for spam classification, however they do not support tagging message as (non-)spam.
+Right now Akismet is used for spam classification.
 
 ## Configuration
 
 The rails credentials/settings file should, aside from the `secret_key_base`, have the following keys:
 
 - token, the token for your api, this will be part of the urls in the Front webhooks
-- datumbox_token, the DatumBox api token
+- akismet_token, the akismet api token
+- akismet_url, the url where your app is deployed
 - frontapp_token, the api token for Front
 - frontapp_spam_inbox_id, The ID of the spam inbox in Front (see [Configuration in Front])
 - frontapp_spam_tag_name, The case-sensitve name of the spam tag in Front (see [Configuration in Front])
