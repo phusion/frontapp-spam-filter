@@ -9,6 +9,8 @@ class HooksController < ApplicationController
       message = @frontapp_service.get_message(conversation)
       if(@spam_service.is_spam?(message))
         @frontapp_service.mark_spam(conversation)
+      else
+        Rails.logger.info "------ NOT CONSIDERED SPAM\n#{message[0..255]}\n------"
       end
       render json: { ok: true }
     rescue => e
@@ -29,10 +31,12 @@ class HooksController < ApplicationController
       message = @frontapp_service.get_message(conversation)
       if(@frontapp_service.has_spam_tag?(conversation) && !@frontapp_service.in_spam_inbox?(conversation))
         # has spam tag and is moved to non-spam folder
+        Rails.logger.info "------ MARKING MESSAGE AS HAM\n#{message[0..255]}\n------"
         @spam_service.mark_ham(message)
         @frontapp_service.mark_ham(conversation)
       elsif !@frontapp_service.has_spam_tag?(conversation)
         # does not have spam tag and is moved to spam folder
+        Rails.logger.info "------ MARKING MESSAGE AS SPAM\n#{message[0..255]}\n------"
         @spam_service.mark_spam(message)
         @frontapp_service.mark_spam(conversation)
       end
