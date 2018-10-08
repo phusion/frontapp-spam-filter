@@ -27,7 +27,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'rest-client'
 gem 'frontapp'
-gem 'akismet'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

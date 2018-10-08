@@ -46,7 +46,6 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     airbrussh (1.3.0)
       sshkit (>= 1.6.1, != 1.7.0)
-    akismet (2.0.0)
     arel (9.0.0)
     bootsnap (1.3.1)
       msgpack (~> 1.0)
@@ -184,7 +183,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  akismet
   bootsnap (>= 1.1.0)
   byebug
   capistrano
