@@ -7,7 +7,7 @@ set :bundle_flags, '--deployment'
 set :bundle_jobs, 4
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'assets', 'gems')
-set :linked_files, fetch(:linked_files, []).push('config/master.key', 'config/credentials.yml.enc')
+set :linked_files, fetch(:linked_files, []).push('config/master.key', 'config/credentials.yml.enc', 'config/database.yml')
 set :rvm_ruby_version, '2.5.1'
 set :ssh_options, forward_agent: true
 set :passenger_restart_with_sudo, false
